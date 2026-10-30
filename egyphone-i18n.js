@@ -35,6 +35,7 @@ const dict={
 'Scansiona':'مسح','Cerca ovunque: prodotto, colore, codice, richiesta…':'دوّر على منتج أو كود أو طلب…'
 };
 let lang=localStorage.getItem(KEY)==='eg'?'eg':'it', timer=0, translating=false;
+let observers=[];
 const native=new WeakMap();
 function eligible(el){
  if(!el||!el.closest||el.closest('#egyI18nControls,#egyDocControls,.egyQuickOverlay'))return false;
@@ -42,6 +43,7 @@ function eligible(el){
 }
 function translate(){
  if(translating)return;translating=true;
+ observers.forEach(({observer})=>observer.disconnect());
  try{
   document.documentElement.lang=lang==='eg'?'ar-EG':'it';
   document.body.classList.toggle('egy-ui-arabic',lang==='eg');
@@ -58,7 +60,7 @@ function translate(){
   }
   }
   document.querySelectorAll('#egyI18nControls [data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
- }finally{translating=false;}
+ }finally{translating=false;observers.forEach(({observer,target})=>observer.observe(target,{subtree:true,childList:true,characterData:true}));}
 }
 function renderControls(){
  if(document.getElementById('egyI18nControls'))return;
@@ -75,8 +77,17 @@ function renderControls(){
 function boot(){
  if(document.documentElement.dataset.btBrand!=='egyphone')return;
  renderControls();translate();
- const target=document.querySelector('.app')||document.body;
- new MutationObserver(()=>{if(translating)return;clearTimeout(timer);timer=setTimeout(translate,120);}).observe(target,{subtree:true,childList:true,characterData:true});
+ const targets=[document.querySelector('.app'),document.getElementById('mainMenu'),document.getElementById('mobileBottomNav')].filter(Boolean);
+ targets.forEach(target=>{
+  const observer=new MutationObserver(mutations=>{
+   if(translating)return;
+   // Only repaint after a genuine application render, never after our own translations.
+   if(!mutations.some(m=>m.type==='childList'||m.type==='characterData'))return;
+   clearTimeout(timer);timer=setTimeout(translate,250);
+  });
+  observers.push({observer,target});
+  observer.observe(target,{subtree:true,childList:true,characterData:true});
+ });
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
