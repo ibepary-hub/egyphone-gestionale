@@ -22,3 +22,21 @@ html[data-bt-brand="egyphone"] body.studio #mainMenu .egyDocControls{flex-shrink
  html[data-bt-brand="egyphone"] body.studio .studioHeaderTitle{flex:1 1 auto!important;max-width:calc(100% - 116px)!important}
  html[data-bt-brand="egyphone"] body.studio .studioHeaderTitle .egyI18nControls button{font-size:10px!important;padding:6px!important}
 }
+
+/* Arabic menu: allow natural vertical scrolling on iOS and Android */
+html[data-bt-brand="egyphone"] body.studio.egy-ui-arabic #mainMenu{
+ overflow-y:auto!important;overscroll-behavior-y:contain!important;
+ -webkit-overflow-scrolling:touch!important;
+ height:100dvh!important;max-height:100dvh!important;
+}
+html[data-bt-brand="egyphone"] body.studio.egy-ui-arabic #mainMenu .menuNav{
+ overflow-y:visible!important;min-height:0!important;height:auto!important;
+ flex:0 0 auto!important;touch-action:pan-y!important;
+}
+html[data-bt-brand="egyphone"] body.studio.egy-ui-arabic #mainMenu .menuItem{
+ display:grid!important;grid-template-columns:22px minmax(0,1fr)!important;
+ direction:rtl!important;
+}
+html[data-bt-brand="egyphone"] body.studio.egy-ui-arabic #mainMenu .menuItem .menuIcon{order:initial!important}
+html[data-bt-brand="egyphone"] body.studio.egy-ui-arabic #mainMenu .menuItem>span:last-child{order:initial!important;min-width:0!important}
+html[data-bt-brand="egyphone"] body.studio.egy-ui-arabic #mainMenu .menuFooter{flex-shrink:0!important}
