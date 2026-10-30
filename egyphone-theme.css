@@ -283,3 +283,65 @@ html[data-bt-brand="egyphone"] .egyArchiveItem{display:flex;justify-content:spac
 html[data-bt-brand="egyphone"] .egyArchiveItem small{display:block;color:#c4d0df;margin-top:5px}
 html[data-bt-brand="egyphone"] .egyArchiveItem button{border-radius:8px;background:#d9af58;color:#1e1a14;border:0;padding:8px 12px;font-weight:700}
 @media(max-width:600px){html[data-bt-brand="egyphone"] .egyArchiveItem{flex-direction:column;align-items:stretch}html[data-bt-brand="egyphone"] .egyArchiveItem>div:last-child{display:flex;justify-content:space-between;align-items:center}}
+
+/* EGYPHONE visual consistency: administration and document surfaces only. */
+html[data-bt-brand="egyphone"] body.studio #deviceSalesView .adminWorkTabs{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;
+ background:transparent!important;border:0!important;padding:0!important;
+}
+html[data-bt-brand="egyphone"] body.studio #deviceSalesView .adminWorkTab{
+ display:flex!important;align-items:center!important;gap:12px!important;text-align:left!important;
+ min-width:0!important;min-height:116px!important;padding:17px!important;
+ border:1px solid #456078!important;border-radius:17px!important;
+ background:#173249!important;color:#f5f0e6!important;
+ box-shadow:0 4px 14px rgba(0,0,0,.13)!important;
+}
+html[data-bt-brand="egyphone"] body.studio #deviceSalesView .adminWorkTab:is(:hover,:focus-visible,[aria-selected="true"]){
+ background:#24445b!important;border-color:#e6b346!important;
+}
+html[data-bt-brand="egyphone"] body.studio #deviceSalesView .adminWorkTab .adminWorkIcon{
+ flex:0 0 40px!important;width:40px!important;height:40px!important;
+ display:grid!important;place-items:center!important;border-radius:11px!important;
+ background:#263f51!important;color:#e6b346!important;font-size:22px!important;
+}
+html[data-bt-brand="egyphone"] body.studio #deviceSalesView .adminWorkTab .adminWorkText{
+ min-width:0!important;display:block!important;color:#f5f0e6!important;
+}
+html[data-bt-brand="egyphone"] body.studio #deviceSalesView .adminWorkTab strong{
+ display:block!important;color:#f8f1e4!important;opacity:1!important;
+ font-size:16px!important;line-height:1.3!important;overflow-wrap:anywhere!important;
+}
+html[data-bt-brand="egyphone"] body.studio #deviceSalesView .adminWorkTab small{
+ display:block!important;color:#bdcedb!important;opacity:1!important;
+ font-size:12px!important;line-height:1.45!important;margin-top:5px!important;
+}
+html[data-bt-brand="egyphone"] body.studio #deviceSalesView .adminWorkHero{
+ background:#10283c!important;border:1px solid #38556c!important;border-radius:18px!important;
+ padding:20px!important;color:#f5f0e6!important;
+}
+html[data-bt-brand="egyphone"] body.studio #deviceSalesView .adminWorkHero :is(h2,p){
+ color:#f5f0e6!important;opacity:1!important;
+}
+html[data-bt-brand="egyphone"] body.studio #deviceSalesView .adminBadge{
+ background:#203b52!important;color:#e6b346!important;border:1px solid #a47e37!important;
+}
+html[data-bt-brand="egyphone"] body.studio :is(.egyDocTabs button,.egyDocChoice button){
+ background:#1b3449!important;border:1px solid #506980!important;color:#f5f0e6!important;
+ border-radius:12px!important;
+}
+html[data-bt-brand="egyphone"] body.studio :is(.egyDocTabs button,.egyDocChoice button):is(.active,[aria-selected="true"],:hover){
+ background:#e6b346!important;border-color:#e6b346!important;color:#12263a!important;
+}
+html[data-bt-brand="egyphone"] body.studio .egyDocHead{color:#f5f0e6!important}
+@media(max-width:760px){
+ html[data-bt-brand="egyphone"] body.studio #deviceSalesView .adminWorkTabs{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ html[data-bt-brand="egyphone"] body.studio #deviceSalesView .adminWorkTab{
+  flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;
+  gap:8px!important;min-height:128px!important;padding:13px!important;
+ }
+ html[data-bt-brand="egyphone"] body.studio #deviceSalesView .adminWorkTab strong{font-size:14px!important}
+ html[data-bt-brand="egyphone"] body.studio #deviceSalesView .adminWorkTab small{font-size:11px!important}
+}
+@media(max-width:350px){
+ html[data-bt-brand="egyphone"] body.studio #deviceSalesView .adminWorkTabs{grid-template-columns:minmax(0,1fr)!important}
+}
