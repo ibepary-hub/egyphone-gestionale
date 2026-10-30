@@ -45,7 +45,6 @@ function translate(){
  try{
   document.documentElement.lang=lang==='eg'?'ar-EG':'it';
   document.body.classList.toggle('egy-ui-arabic',lang==='eg');
-  const roots=[document.querySelector('header'),document.getElementById('mainMenu'),document.getElementById('mobileBottomNav'),document.getElementById('dashboard'),document.querySelector('.studioWelcome'),document.querySelector('.app')].filter(Boolean);
   for(const root of [document.getElementById('mainMenu'),document.querySelector('.app'),document.getElementById('mobileBottomNav')].filter(Boolean)){
   const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
   let node,count=0;while((node=walker.nextNode())&&count++<14000){
@@ -66,12 +65,12 @@ function renderControls(){
  const wrap=document.createElement('div');wrap.id='egyI18nControls';wrap.className='egyI18nControls';
  wrap.innerHTML='<span>Lingua / اللغة</span><button type="button" data-lang="it">🇮🇹 Italiano</button><button type="button" data-lang="eg">🇪🇬 مصري</button>';
  wrap.addEventListener('click',e=>{const b=e.target.closest('[data-lang]');if(!b)return;lang=b.dataset.lang;localStorage.setItem(KEY,lang);translate();});
- (document.querySelector('#mainMenu .menuFooter')||document.querySelector('.menuFooter')||document.body).prepend(wrap);
+ (document.querySelector('.studioHeaderTitle')||document.querySelector('header')||document.body).append(wrap);
  const doc=document.createElement('div');doc.id='egyDocControls';doc.className='egyDocControls';
  doc.innerHTML='<label for="egyDocumentLanguage">Lingua documenti / لغة المستندات</label><select id="egyDocumentLanguage"><option value="it">🇮🇹 Italiano</option><option value="eg">🇪🇬 عربي مصري</option></select><small>Preferenza per le stampe future. I documenti fiscali ufficiali restano in italiano; nessuna traduzione dei PDF ancora attiva.</small>';
  doc.querySelector('select').value=localStorage.getItem(DOC_KEY)==='eg'?'eg':'it';
  doc.querySelector('select').addEventListener('change',e=>localStorage.setItem(DOC_KEY,e.target.value));
- wrap.after(doc);
+ (document.querySelector('#mainMenu .menuNav')||document.querySelector('#mainMenu')||document.body).append(doc);
 }
 function boot(){
  if(document.documentElement.dataset.btBrand!=='egyphone')return;
