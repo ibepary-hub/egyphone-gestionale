@@ -1,0 +1,13 @@
+/* EGYPHONE language controls; do not affect other tenants */
+html[data-bt-brand="egyphone"] .egyI18nControls,html[data-bt-brand="egyphone"] .egyDocControls{margin:9px 8px;padding:12px;background:#142d41;border:1px solid #446078;border-radius:12px;color:#edf2f7;font-size:12px}
+html[data-bt-brand="egyphone"] .egyI18nControls span,html[data-bt-brand="egyphone"] .egyDocControls label{display:block;margin-bottom:9px;color:#e6b346;font-weight:700}
+html[data-bt-brand="egyphone"] .egyI18nControls button{border:1px solid #476379;background:#203c51;color:#fff;border-radius:9px;padding:9px 10px;margin-right:5px;font-size:12px;cursor:pointer}
+html[data-bt-brand="egyphone"] .egyI18nControls button[aria-pressed="true"]{background:#e6b346;border-color:#e6b346;color:#12283b;font-weight:800}
+html[data-bt-brand="egyphone"] .egyDocControls select{width:100%;padding:10px;color:#fff;background:#203c51;border:1px solid #506f85;border-radius:8px}
+html[data-bt-brand="egyphone"] .egyDocControls small{display:block;margin-top:9px;line-height:1.5;color:#c4d2dc}
+html[data-bt-brand="egyphone"] body.egy-ui-arabic .menuItem>span:last-child,html[data-bt-brand="egyphone"] body.egy-ui-arabic .menuGroupTitle{text-align:right}
+html[data-bt-brand="egyphone"] body.egy-ui-arabic .menuItem>span:last-child{direction:rtl}
+html[data-bt-brand="egyphone"] body.egy-ui-arabic .menuNav .menuItem{direction:rtl}
+html[data-bt-brand="egyphone"] body.egy-ui-arabic .menuItem{grid-template-columns:minmax(0,1fr) 20px!important}
+html[data-bt-brand="egyphone"] body.egy-ui-arabic .menuItem .menuIcon{order:2}
+html[data-bt-brand="egyphone"] body.egy-ui-arabic .menuItem>span:last-child{order:1}
