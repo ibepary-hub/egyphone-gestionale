@@ -46,7 +46,7 @@ function translate(){
   document.documentElement.lang=lang==='eg'?'ar-EG':'it';
   document.body.classList.toggle('egy-ui-arabic',lang==='eg');
   const roots=[document.querySelector('header'),document.getElementById('mainMenu'),document.getElementById('mobileBottomNav'),document.getElementById('dashboard'),document.querySelector('.studioWelcome'),document.querySelector('.app')].filter(Boolean);
-  const root=roots[roots.length-1]||document.body;
+  for(const root of [document.getElementById('mainMenu'),document.querySelector('.app'),document.getElementById('mobileBottomNav')].filter(Boolean)){
   const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
   let node,count=0;while((node=walker.nextNode())&&count++<14000){
    if(!node.parentElement||!eligible(node.parentElement))continue;
@@ -56,6 +56,7 @@ function translate(){
    const original=native.get(node), key=original.trim();
    const next=lang==='eg'&&dict[key]?original.replace(key,dict[key]):original;
    if(node.nodeValue!==next)node.nodeValue=next;
+  }
   }
   document.querySelectorAll('#egyI18nControls [data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
  }finally{translating=false;}
