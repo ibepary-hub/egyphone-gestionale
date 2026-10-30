@@ -1,0 +1,44 @@
+name: Prepara pubblicazione isolata Egyphone
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: egyphone-pages
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout sorgente fissata (nessun aggiornamento automatico)
+        uses: actions/checkout@v4
+        with:
+          repository: ibepary-hub/-Vetro-posteriore-iPhon
+          ref: f9b04cbaa576146085e6360bb412d69af7bfda69
+          path: site
+          persist-credentials: false
+      - name: Preflight: mai distribuire configurazione principale senza isolamento
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f site/index.html
+          test -f site/app.js
+          test -f site/egyphone-brand.js
+          # La pubblicazione e' intenzionalmente BLOCCATA fino a un collaudo
+          # completo dell'isolamento workspace e del backup del database.
+          echo "::error::Bloccato: mancano backup Supabase verificato e test autorizzazioni per tenant."
+          exit 1
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
