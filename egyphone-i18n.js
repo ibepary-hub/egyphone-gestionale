@@ -36,31 +36,35 @@ const dict={
 };
 let lang=localStorage.getItem(KEY)==='eg'?'eg':'it', timer=0, translating=false;
 let observers=[];
-const native=new WeakMap();
+const reverse=Object.fromEntries(Object.entries(dict).map(([it,ar])=>[ar,it]));
 function eligible(el){
  if(!el||!el.closest||el.closest('#egyI18nControls,#egyDocControls,.egyQuickOverlay'))return false;
  return !el.closest('script,style,textarea,input,select,option,[contenteditable],.egyVerseBody,[lang="ar"],.egyInvoiceColumn,#egyInvoiceForm,.saleDialog');
 }
 function translate(){
- if(translating)return;translating=true;
+ if(translating)return;
+ translating=true;
  observers.forEach(({observer})=>observer.disconnect());
  try{
   document.documentElement.lang=lang==='eg'?'ar-EG':'it';
   document.body.classList.toggle('egy-ui-arabic',lang==='eg');
   for(const root of [document.getElementById('mainMenu'),document.querySelector('.app'),document.getElementById('mobileBottomNav')].filter(Boolean)){
-  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
-  let node,count=0;while((node=walker.nextNode())&&count++<14000){
-   if(!node.parentElement||!eligible(node.parentElement))continue;
-   const value=node.nodeValue, trimmed=value.trim();
-   if(!trimmed)continue;
-   if(!native.has(node))native.set(node,value);
-   const original=native.get(node), key=original.trim();
-   const next=lang==='eg'&&dict[key]?original.replace(key,dict[key]):original;
-   if(node.nodeValue!==next)node.nodeValue=next;
-  }
+   const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+   let node,count=0;
+   while((node=walker.nextNode())&&count++<14000){
+    if(!node.parentElement||!eligible(node.parentElement))continue;
+    const value=node.nodeValue,trimmed=value.trim();if(!trimmed)continue;
+    // Derive from actual DOM text, not a cached node that the app may have rewritten.
+    const original=reverse[trimmed]||trimmed;
+    const next=lang==='eg'?(dict[original]||original):original;
+    if(value!==value.replace(trimmed,next))node.nodeValue=value.replace(trimmed,next);
+   }
   }
   document.querySelectorAll('#egyI18nControls [data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
- }finally{translating=false;observers.forEach(({observer,target})=>observer.observe(target,{subtree:true,childList:true,characterData:true}));}
+ }finally{
+  translating=false;
+  observers.forEach(({observer,target})=>observer.observe(target,{subtree:true,childList:true,characterData:true}));
+ }
 }
 function renderControls(){
  if(document.getElementById('egyI18nControls'))return;
@@ -92,7 +96,7 @@ function boot(){
    if(translating)return;
    // Only repaint after a genuine application render, never after our own translations.
    if(!mutations.some(m=>m.type==='childList'||m.type==='characterData'))return;
-   clearTimeout(timer);timer=setTimeout(translate,250);
+   clearTimeout(timer);timer=setTimeout(translate,60);
   });
   observers.push({observer,target});
   observer.observe(target,{subtree:true,childList:true,characterData:true});
