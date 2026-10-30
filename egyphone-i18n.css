@@ -40,3 +40,27 @@ html[data-bt-brand="egyphone"] body.studio.egy-ui-arabic #mainMenu .menuItem{
 html[data-bt-brand="egyphone"] body.studio.egy-ui-arabic #mainMenu .menuItem .menuIcon{order:initial!important}
 html[data-bt-brand="egyphone"] body.studio.egy-ui-arabic #mainMenu .menuItem>span:last-child{order:initial!important;min-width:0!important}
 html[data-bt-brand="egyphone"] body.studio.egy-ui-arabic #mainMenu .menuFooter{flex-shrink:0!important}
+
+/* Sidebar mobile: header/footer stay compact and navigation owns vertical scrolling */
+@media(max-width:1059px){
+ html[data-bt-brand="egyphone"] body.studio #mainMenu{
+  display:flex!important;flex-direction:column!important;
+  box-sizing:border-box!important;height:100dvh!important;max-height:100dvh!important;
+  overflow:hidden!important;touch-action:auto!important;
+  padding-bottom:max(12px,env(safe-area-inset-bottom))!important;
+ }
+ html[data-bt-brand="egyphone"] body.studio #mainMenu .menuHead,
+ html[data-bt-brand="egyphone"] body.studio #mainMenu .studioWorkspace,
+ html[data-bt-brand="egyphone"] body.studio #mainMenu .menuFooter{flex:0 0 auto!important}
+ html[data-bt-brand="egyphone"] body.studio #mainMenu .menuNav{
+  flex:1 1 0%!important;min-height:0!important;height:auto!important;
+  max-height:none!important;overflow-x:hidden!important;overflow-y:auto!important;
+  -webkit-overflow-scrolling:touch!important;touch-action:pan-y!important;
+  overscroll-behavior-y:contain!important;display:flex!important;flex-direction:column!important;
+ }
+ html[data-bt-brand="egyphone"] body.studio #mainMenu .menuNav > *{flex-shrink:0!important}
+ html[data-bt-brand="egyphone"] body.studio #mainMenu .menuFooter{max-height:78px!important;overflow:hidden!important;margin-top:4px!important}
+ html[data-bt-brand="egyphone"] body.studio #mainMenu .egyDocControls{display:none!important}
+}
+html[data-bt-brand="egyphone"] body.studio #settingsView .egyDocControls{display:block!important;max-width:550px!important;margin:16px 0!important}
+html[data-bt-brand="egyphone"] body.studio .studioHeaderTitle .egyI18nControls{display:flex!important;flex-wrap:nowrap!important}
