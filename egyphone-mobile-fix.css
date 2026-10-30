@@ -89,3 +89,18 @@
  html[data-bt-brand="egyphone"] body.studio .mobileBottomNav button span{white-space:nowrap!important;font-size:10px!important}
  html[data-bt-brand="egyphone"] body.studio{padding-bottom:calc(96px + env(safe-area-inset-bottom))!important}
 }
+
+/* EGYPHONE dashboard · approved Arabic verse and scanner icon */
+html[data-bt-brand="egyphone"] body.studio .egyIslamicWelcome{background:#1d394f!important;border-radius:18px!important;border:1px solid rgba(180,203,220,.12)!important;display:block!important}
+html[data-bt-brand="egyphone"] body.studio .egyVerseBody{width:100%!important;max-width:100%!important;text-align:center!important}
+html[data-bt-brand="egyphone"] body.studio .egyVerseBody .studioEyebrow{display:block!important;text-align:left!important;color:#e6b346!important}
+html[data-bt-brand="egyphone"] body.studio .egyVerseBody h3{font-family:Tahoma,"Geeza Pro","Noto Naskh Arabic",serif!important;font-size:clamp(23px,5.5vw,35px)!important;line-height:1.95!important;font-weight:600!important;letter-spacing:0!important;direction:rtl!important;white-space:normal!important;overflow-wrap:normal!important;color:#f8edd4!important;text-align:center!important;margin:12px 0!important}
+html[data-bt-brand="egyphone"] body.studio .egyVerseBody p{color:#f8f1e7!important;font-size:15px!important;line-height:1.6!important;text-align:center!important;margin:0 0 14px!important}
+html[data-bt-brand="egyphone"] body.studio .egyVerseReference{border-top:1px solid #49647a!important;padding-top:13px!important;text-align:center!important;color:#e6b346!important;font-weight:650!important;font-size:13px!important}
+html[data-bt-brand="egyphone"] body.studio #scanBarcodeBtn{display:grid!important;place-items:center!important;min-width:46px!important;width:46px!important;height:46px!important;padding:0!important;flex:0 0 46px!important;background:#e6b346!important;color:#10283c!important;border-radius:11px!important;font-size:0!important}
+html[data-bt-brand="egyphone"] body.studio #scanBarcodeBtn svg{display:block!important;width:22px!important;height:22px!important}
+@media(max-width:760px){
+ html[data-bt-brand="egyphone"] body.studio .egyIslamicWelcome{padding:20px 18px!important}
+ html[data-bt-brand="egyphone"] body.studio .egyVerseBody h3{font-size:clamp(22px,6vw,29px)!important;line-height:2!important}
+ html[data-bt-brand="egyphone"] body.studio .globalSearchBox #scanBarcodeBtn{flex:0 0 46px!important;min-width:46px!important;width:46px!important;max-width:46px!important}
+}
