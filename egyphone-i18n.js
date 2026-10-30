@@ -34,7 +34,7 @@ const dict={
 'VENDITE E DOCUMENTI':'المبيعات والمستندات',
 'Scansiona':'مسح','Cerca ovunque: prodotto, colore, codice, richiesta…':'دوّر على منتج أو كود أو طلب…'
 };
-let lang=localStorage.getItem(KEY)==='eg'?'eg':'it', timer=0, translating=false;
+let lang=localStorage.getItem(KEY)==='eg'?'eg':'it', translating=false;
 let observers=[];
 const reverse=Object.fromEntries(Object.entries(dict).map(([it,ar])=>[ar,it]));
 function eligible(el){
@@ -96,7 +96,7 @@ function boot(){
    if(translating)return;
    // Only repaint after a genuine application render, never after our own translations.
    if(!mutations.some(m=>m.type==='childList'||m.type==='characterData'))return;
-   clearTimeout(timer);timer=setTimeout(translate,60);
+   translate();
   });
   observers.push({observer,target});
   observer.observe(target,{subtree:true,childList:true,characterData:true});
