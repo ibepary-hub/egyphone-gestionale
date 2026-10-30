@@ -1,15 +1,9 @@
-# Egyphone · pubblicazione separata (preparazione)
+# EGYPHONE Gestionale
 
-Questo repository è destinato esclusivamente a un futuro deployment indipendente di Egyphone su `egyphone.beparytech.it`.
+Sito indipendente: https://egyphone.beparytech.it
 
-## Stato
+Copia autonoma del frontend BeparyTech dal commit f9b04cbaa576146085e6360bb412d69af7bfda69. Le successive modifiche a BeparyTech non aggiornano questo repository.
 
-- Repository creato, ancora **non pubblicato**.
-- Non contiene il codice del gestionale né dati dei clienti.
-- Non puntare il DNS qui prima di configurare GitHub Pages e il dominio personalizzato.
-- Non copiare dati o configurazioni di BeparyTech nel repository.
-- Verificare backup del database, protezione RLS per workspace e flussi login/logout prima del rilascio.
+Sessione browser dedicata; verifica del workspace Egyphone prima dei caricamenti; logout limitato alla sessione locale. I dati restano nel progetto Supabase esistente, protetti dalle policy RLS.
 
-## Vincoli
-
-Mantenere `gestionale.beparytech.it` e il suo repository invariati finché il secondo sito non è collaudato. La separazione dei domini isola l'archiviazione locale delle sessioni nel browser; l'isolamento dei dati richiede inoltre autorizzazioni Supabase e RLS corrette.
+Backup codice precedente: backup/pre-separate-site-20261030. Backup dati manuale eseguito il 30 ottobre 2026.

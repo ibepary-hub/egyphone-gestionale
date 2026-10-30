@@ -1,0 +1,285 @@
+/* EGYPHONE — visual theme, scoped strictly to authenticated EGYPHONE workspace.
+   No changes to business logic, permissions or billing calculations. */
+html[data-bt-brand="egyphone"] body.studio{
+ --bg:#081623;--card:#102337;--card2:#142c42;--text:#f4f0e6;--muted:#b9c5d0;--line:#30455a;
+ --gold:#e1ac38;--gold2:#f0c86a;--green:#d3a33e;--amber:#e8bb55;
+ --panel:#102337;--surface:#0b1b2a;--input:#12283a;--border:#30455a;--accent:#dfac41;
+ --v2-bg:#081623;--v2-card:#102337;--v2-line:#30455a;--v2-text:#f4f0e6;--v2-muted:#b9c5d0;
+ --studio-soft:#172c3d;--studio-welcome:#162d43;
+ background:#0b1929!important;color:#f4f0e6;
+}
+html[data-bt-brand="egyphone"] body.studio .mainMenu{
+ background:linear-gradient(180deg,#08131e,#10263a)!important;border-right:1px solid #4b3d25!important;
+}
+html[data-bt-brand="egyphone"] body.studio .menuHead,
+html[data-bt-brand="egyphone"] body.studio .studioWorkspace{border-color:#4c3e2a!important}
+html[data-bt-brand="egyphone"] body.studio .menuBrand strong{color:#f6d78d!important}
+html[data-bt-brand="egyphone"] body.studio .menuBrand span,
+html[data-bt-brand="egyphone"] body.studio .menuGroupTitle{color:#d9b76d!important}
+html[data-bt-brand="egyphone"] body.studio .menuItem{color:#dbe6ef!important}
+html[data-bt-brand="egyphone"] body.studio .menuItem.active,
+html[data-bt-brand="egyphone"] body.studio .menuItem:hover{
+ background:rgba(220,169,57,.18)!important;color:#ffdb87!important;
+}
+html[data-bt-brand="egyphone"] body.studio .studioBrandMark img,
+html[data-bt-brand="egyphone"] body.studio .studioWorkspace img{filter:drop-shadow(0 2px 5px #ddaa4366)}
+html[data-bt-brand="egyphone"] body.studio button.primaryAction,
+html[data-bt-brand="egyphone"] body.studio .primaryAction,
+html[data-bt-brand="egyphone"] body.studio .scannerNavButton{
+ background:linear-gradient(135deg,#f3d17c,#c99428)!important;
+ border-color:#b78420!important;color:#211a0b!important;
+}
+html[data-bt-brand="egyphone"] body.studio input:focus,
+html[data-bt-brand="egyphone"] body.studio select:focus,
+html[data-bt-brand="egyphone"] body.studio textarea:focus{
+ border-color:#d5a138!important;outline-color:#d5a138!important;box-shadow:0 0 0 3px #d5a13833!important;
+}
+html[data-bt-brand="egyphone"] body.studio .studioWelcome,
+html[data-bt-brand="egyphone"] body.studio .studioWelcomeBanner{
+ background:linear-gradient(120deg,#18344a,#26384a)!important;
+}
+html[data-bt-brand="egyphone"] body.studio .menuIcon{color:#e9be65!important}
+@media(prefers-reduced-motion:reduce){
+ html[data-bt-brand="egyphone"] body.studio *{transition-duration:.01ms!important}
+}
+
+
+/* Contrast patch 2026-10-30: selectors matched against current dashboard HTML. */
+html[data-bt-brand="egyphone"] body.studio .dashboardHeroCopy h2,
+html[data-bt-brand="egyphone"] body.studio #dashboardGreetingName{
+ color:#f6f0df!important;text-shadow:none!important;
+}
+html[data-bt-brand="egyphone"] body.studio .dashboardHeroCopy p{
+ color:#bdccd9!important;
+}
+html[data-bt-brand="egyphone"] body.studio .dashboardPrimaryActions{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ gap:14px!important;align-items:stretch!important;
+}
+html[data-bt-brand="egyphone"] body.studio .dashboardPrimaryActions .primaryActionCard{
+ background:#132a40!important;border:1px solid #38516b!important;
+ color:#f6f0df!important;border-radius:14px!important;
+ min-height:96px!important;padding:16px!important;
+ box-shadow:0 4px 16px #0003!important;align-items:center!important;
+}
+html[data-bt-brand="egyphone"] body.studio .dashboardPrimaryActions .primaryActionCard strong{
+ color:#f6f0df!important;font-weight:750!important;opacity:1!important;
+}
+html[data-bt-brand="egyphone"] body.studio .dashboardPrimaryActions .primaryActionCard small{
+ color:#c1d0dd!important;opacity:1!important;
+}
+html[data-bt-brand="egyphone"] body.studio .dashboardPrimaryActions .primaryActionCard > b{
+ background:#0c1d2d!important;color:#f0bf59!important;
+ border:1px solid #445675!important;border-radius:11px!important;
+}
+html[data-bt-brand="egyphone"] body.studio .dashboardPrimaryActions .primaryActionCard:hover{
+ border-color:#d5a138!important;background:#193650!important;
+ box-shadow:0 6px 20px #0005!important;
+}
+html[data-bt-brand="egyphone"] body.studio .dashboardKpis,
+html[data-bt-brand="egyphone"] body.studio .dashboardKpis > *{
+ color:#f4f0e6!important;
+}
+html[data-bt-brand="egyphone"] body.studio .dashboardMainGrid .dashAnalyticsCard,
+html[data-bt-brand="egyphone"] body.studio .dashboardMainGrid .dashCard,
+html[data-bt-brand="egyphone"] body.studio .dashboardMainGrid .dashboardPanel{
+ background:#132a40!important;color:#f6f0df!important;border-color:#38516b!important;
+}
+@media(max-width:900px){
+ html[data-bt-brand="egyphone"] body.studio .dashboardPrimaryActions{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:560px){
+ html[data-bt-brand="egyphone"] body.studio .dashboardPrimaryActions{grid-template-columns:1fr!important}
+}
+
+
+/* EGYPHONE — Repair and sales summaries: cohesive layout desktop and mobile */
+html[data-bt-brand="egyphone"] body.studio #adminRepairsSummary,
+html[data-bt-brand="egyphone"] body.studio .deviceSalesSummary{
+ display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ gap:10px!important;margin:16px 0 20px!important;
+}
+html[data-bt-brand="egyphone"] body.studio #adminRepairsSummary > div,
+html[data-bt-brand="egyphone"] body.studio .deviceSalesSummary > div{
+ min-width:0!important;min-height:86px!important;
+ padding:16px!important;border-radius:13px!important;
+ background:#182f45!important;border:1px solid #3b5269!important;
+ box-shadow:none!important;display:flex!important;flex-direction:column!important;justify-content:center!important;
+}
+html[data-bt-brand="egyphone"] body.studio #adminRepairsSummary span,
+html[data-bt-brand="egyphone"] body.studio .deviceSalesSummary span{
+ color:#c5d2df!important;font-size:11px!important;line-height:1.5!important;
+}
+html[data-bt-brand="egyphone"] body.studio #adminRepairsSummary strong,
+html[data-bt-brand="egyphone"] body.studio .deviceSalesSummary strong{
+ color:#f5d48a!important;font-size:23px!important;line-height:1.25!important;
+}
+html[data-bt-brand="egyphone"] body.studio .repairHistoryTools{
+ display:flex!important;max-width:100%!important;gap:9px!important;
+}
+html[data-bt-brand="egyphone"] body.studio .repairHistoryTools input{
+ background:#12283a!important;color:#f4f0e6!important;border-color:#405970!important;
+}
+html[data-bt-brand="egyphone"] body.studio .repairHistoryTools input::placeholder{color:#aebfcf!important}
+html[data-bt-brand="egyphone"] body.studio .repairPracticeBucket .deviceAdminSaleRow{
+ background:#152b40!important;border:1px solid #3b536b!important;
+ border-radius:14px!important;padding:15px!important;
+}
+html[data-bt-brand="egyphone"] body.studio .repairPracticeBucket .deviceAdminSaleRow strong{
+ color:#f3eee5!important;
+}
+html[data-bt-brand="egyphone"] body.studio .repairPracticeBucket .deviceAdminSaleMeta span,
+html[data-bt-brand="egyphone"] body.studio .repairPracticeBucket .deviceAdminSaleTop span{
+ color:#c0cfdb!important;
+}
+@media(max-width:950px){
+ html[data-bt-brand="egyphone"] body.studio #adminRepairsSummary,
+ html[data-bt-brand="egyphone"] body.studio .deviceSalesSummary{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ }
+}
+@media(max-width:600px){
+ html[data-bt-brand="egyphone"] body.studio #adminRepairsSummary,
+ html[data-bt-brand="egyphone"] body.studio .deviceSalesSummary{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;
+ }
+ html[data-bt-brand="egyphone"] body.studio #adminRepairsSummary > div,
+ html[data-bt-brand="egyphone"] body.studio .deviceSalesSummary > div{
+  padding:12px!important;min-height:75px!important;
+ }
+ html[data-bt-brand="egyphone"] body.studio #adminRepairsSummary strong,
+ html[data-bt-brand="egyphone"] body.studio .deviceSalesSummary strong{font-size:20px!important}
+ html[data-bt-brand="egyphone"] body.studio .repairHistoryTools{
+  flex-direction:column!important;align-items:stretch!important;width:100%!important;
+ }
+ html[data-bt-brand="egyphone"] body.studio .repairHistoryTools input{
+  width:100%!important;min-width:0!important;
+ }
+ html[data-bt-brand="egyphone"] body.studio .repairHistoryTools button{width:100%!important}
+ html[data-bt-brand="egyphone"] body.studio .repairPracticeBucket .deviceAdminSaleTop{
+  flex-wrap:wrap!important;gap:8px!important;
+ }
+ html[data-bt-brand="egyphone"] body.studio .repairPracticeBucket .deviceAdminSalePrice{
+  white-space:normal!important;text-align:left!important;
+ }
+ html[data-bt-brand="egyphone"] body.studio .repairPracticeBucket .deviceAdminSaleActions{
+  display:flex!important;flex-wrap:wrap!important;gap:8px!important;justify-content:stretch!important;
+ }
+ html[data-bt-brand="egyphone"] body.studio .repairPracticeBucket .deviceAdminSaleActions button{
+  flex:1 1 120px!important;min-height:40px!important;
+ }
+}
+
+
+/* EGYPHONE v4 — single fixed navy/gold palette; no toggling or JS changes.
+   All rules are explicitly scoped to the EGYPHONE tenant. */
+html[data-bt-brand="egyphone"] body.studio[data-theme="light"],
+html[data-bt-brand="egyphone"] body.studio[data-theme="dark"],
+html[data-bt-brand="egyphone"] body.studio{
+ --bg:#091725!important;--card:#132a40!important;--card2:#172f47!important;
+ --text:#f4f0e6!important;--muted:#c8d3de!important;--line:#3a536b!important;
+ --gold:#e1ad3d!important;--gold2:#f4cb71!important;--green:#d3a13a!important;
+ --panel:#132a40!important;--surface:#11273a!important;--input:#12293d!important;
+ --border:#3b556e!important;--accent:#e1ad3d!important;
+ --v2-bg:#091725!important;--v2-card:#132a40!important;--v2-line:#3a536b!important;
+ --v2-text:#f4f0e6!important;--v2-muted:#c8d3de!important;
+ --studio-soft:#19354e!important;--studio-welcome:#19354e!important;
+ background:#091725!important;color:#f4f0e6!important;
+ color-scheme:dark;
+}
+html[data-bt-brand="egyphone"] body.studio #themeToggle{display:none!important}
+/* Screens that previously retained a light panel despite the night palette */
+html[data-bt-brand="egyphone"] body.studio .salesView,
+html[data-bt-brand="egyphone"] body.studio .salesView .salesHeader,
+html[data-bt-brand="egyphone"] body.studio .salesView .salesMode,
+html[data-bt-brand="egyphone"] body.studio .salesView .salesFilter,
+html[data-bt-brand="egyphone"] body.studio .salesView .saleTabs,
+html[data-bt-brand="egyphone"] body.studio .salesView .salesStoreTabs,
+html[data-bt-brand="egyphone"] body.studio #salesList,
+html[data-bt-brand="egyphone"] body.studio .deviceSalesView,
+html[data-bt-brand="egyphone"] body.studio .deviceSalesView .deviceSalesLayout{
+ background:#11273a!important;color:#f4f0e6!important;border-color:#3b556e!important;
+}
+html[data-bt-brand="egyphone"] body.studio .salesView strong,
+html[data-bt-brand="egyphone"] body.studio .deviceSalesView strong{
+ color:#f4f0e6!important;
+}
+html[data-bt-brand="egyphone"] body.studio .salesView small,
+html[data-bt-brand="egyphone"] body.studio .salesView .salesHeader span,
+html[data-bt-brand="egyphone"] body.studio .deviceSalesView small{
+ color:#c8d3de!important;
+}
+html[data-bt-brand="egyphone"] body.studio .salesStoreTabs button{
+ background:#193248!important;color:#f4f0e6!important;
+ border:1px solid #476078!important;
+}
+html[data-bt-brand="egyphone"] body.studio .salesStoreTabs button.active{
+ background:#e1ad3d!important;color:#1b170f!important;border-color:#e1ad3d!important;
+}
+html[data-bt-brand="egyphone"] body.studio #salesList > *,
+html[data-bt-brand="egyphone"] body.studio .salesView .saleCard{
+ background:#193248!important;color:#f4f0e6!important;border-color:#3b556e!important;
+}
+html[data-bt-brand="egyphone"] body.studio input,
+html[data-bt-brand="egyphone"] body.studio textarea,
+html[data-bt-brand="egyphone"] body.studio select{
+ background:#12293d!important;color:#f4f0e6!important;border-color:#476078!important;
+}
+html[data-bt-brand="egyphone"] body.studio input::placeholder,
+html[data-bt-brand="egyphone"] body.studio textarea::placeholder{color:#aabfd0!important}
+@media(max-width:650px){
+ html[data-bt-brand="egyphone"] body.studio .salesHeader,
+ html[data-bt-brand="egyphone"] body.studio .repairHistoryTools{
+ flex-wrap:wrap!important;gap:10px!important;
+ }
+ html[data-bt-brand="egyphone"] body.studio .salesStoreTabs{
+ display:flex!important;flex-wrap:wrap!important;gap:8px!important;
+ }
+ html[data-bt-brand="egyphone"] body.studio .salesStoreTabs button{
+ max-width:100%!important;min-height:40px!important;
+ }
+ html[data-bt-brand="egyphone"] body.studio #salesList,
+ html[data-bt-brand="egyphone"] body.studio .salesView,
+ html[data-bt-brand="egyphone"] body.studio .deviceSalesView{
+ max-width:100%!important;min-width:0!important;
+ }
+}
+
+/* EGYPHONE custom billing form — tenant scoped, responsive */
+html[data-bt-brand="egyphone"] .egyInvoiceFields{
+ display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:20px;
+}
+html[data-bt-brand="egyphone"] #egyInvoiceForm input:focus{border-color:#e1ad3d!important;outline:2px solid #e1ad3d50!important}
+html[data-bt-brand="egyphone"] .egyRepairSearchItems{border-top:1px solid #53667a;padding-top:5px}
+@media(max-width:900px){html[data-bt-brand="egyphone"] .egyInvoiceFields{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:550px){html[data-bt-brand="egyphone"] .egyInvoiceFields{grid-template-columns:1fr;}html[data-bt-brand="egyphone"] #egyInvoiceForm{padding:14px!important}}
+
+
+/* EGYPHONE document workspace: two balanced columns, responsive */
+html[data-bt-brand="egyphone"] #egyInvoiceForm{background:#11273a;border:1px solid #38536a;border-radius:18px;padding:22px;color:#f4f0e6}
+html[data-bt-brand="egyphone"] #egyInvoiceForm [hidden]{display:none!important}
+html[data-bt-brand="egyphone"] .egyDocHead h2{color:#f5d48a;margin:0 0 6px}
+html[data-bt-brand="egyphone"] .egyDocHead p,
+html[data-bt-brand="egyphone"] .egyInvoiceColumn p{color:#bfcfdb}
+html[data-bt-brand="egyphone"] .egyDocTabs{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+html[data-bt-brand="egyphone"] .egyDocTabs button{background:#1b3449;color:#e8eff5;border:1px solid #496178;border-radius:10px;padding:12px 18px}
+html[data-bt-brand="egyphone"] .egyDocTabs button.active{background:#e6b346;color:#17180f;border-color:#e6b346;font-weight:750}
+html[data-bt-brand="egyphone"] .egyInvoiceColumns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+html[data-bt-brand="egyphone"] .egyInvoiceColumn{background:#183148;border:1px solid #426078;border-radius:15px;padding:20px;min-width:0}
+html[data-bt-brand="egyphone"] .egyInvoiceColumn h3{margin:0 0 6px;color:#f4d28a}
+html[data-bt-brand="egyphone"] .egyColumnFields{display:grid;grid-template-columns:1fr;gap:13px;margin-top:20px}
+html[data-bt-brand="egyphone"] .egyField{display:flex;flex-direction:column;gap:7px;color:#f2f4f5;min-width:0;font-size:13px}
+html[data-bt-brand="egyphone"] .egyField input{width:100%;min-width:0;padding:12px 13px;border-radius:9px;background:#0d2235!important;border:1px solid #536a81!important;color:#fff!important}
+html[data-bt-brand="egyphone"] .egyInvoiceActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+html[data-bt-brand="egyphone"] #egyInvoiceStatus{color:#f1d28d;min-height:18px}
+html[data-bt-brand="egyphone"] .egyInvoiceDisclaimer{color:#bfd0dc;font-size:12px;line-height:1.6;margin-top:15px}
+@media(max-width:800px){html[data-bt-brand="egyphone"] .egyInvoiceColumns{grid-template-columns:1fr;gap:14px}html[data-bt-brand="egyphone"] #egyInvoiceForm{padding:14px}html[data-bt-brand="egyphone"] .egyInvoiceColumn{padding:15px}}
+@media(max-width:480px){html[data-bt-brand="egyphone"] .egyDocTabs button{flex:1 1 140px}html[data-bt-brand="egyphone"] .egyInvoiceActions button{flex:1 1 100%;min-height:44px}}
+
+html[data-bt-brand="egyphone"] .egyDocArchive{margin-top:24px;padding:16px;border:1px solid #426078;border-radius:14px;background:#132a40;color:#f4f0e6}
+html[data-bt-brand="egyphone"] .egyDocArchive h3{color:#f4d28a;margin:0 0 8px}
+html[data-bt-brand="egyphone"] .egyArchiveRows{display:grid;gap:8px;margin-top:14px}
+html[data-bt-brand="egyphone"] .egyArchiveItem{display:flex;justify-content:space-between;align-items:center;gap:14px;border:1px solid #3a526a;background:#1a3248;border-radius:10px;padding:12px}
+html[data-bt-brand="egyphone"] .egyArchiveItem small{display:block;color:#c4d0df;margin-top:5px}
+html[data-bt-brand="egyphone"] .egyArchiveItem button{border-radius:8px;background:#d9af58;color:#1e1a14;border:0;padding:8px 12px;font-weight:700}
+@media(max-width:600px){html[data-bt-brand="egyphone"] .egyArchiveItem{flex-direction:column;align-items:stretch}html[data-bt-brand="egyphone"] .egyArchiveItem>div:last-child{display:flex;justify-content:space-between;align-items:center}}
