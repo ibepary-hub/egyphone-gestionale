@@ -11,3 +11,14 @@ html[data-bt-brand="egyphone"] body.egy-ui-arabic .menuNav .menuItem{direction:r
 html[data-bt-brand="egyphone"] body.egy-ui-arabic .menuItem{grid-template-columns:minmax(0,1fr) 20px!important}
 html[data-bt-brand="egyphone"] body.egy-ui-arabic .menuItem .menuIcon{order:2}
 html[data-bt-brand="egyphone"] body.egy-ui-arabic .menuItem>span:last-child{order:1}
+
+/* Language switcher remains visible directly below the EGYPHONE heading */
+html[data-bt-brand="egyphone"] body.studio .studioHeaderTitle{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:3px!important;min-width:0!important}
+html[data-bt-brand="egyphone"] body.studio .studioHeaderTitle .egyI18nControls{display:flex!important;align-items:center!important;gap:4px!important;margin:7px 0 0!important;padding:0!important;border:0!important;background:transparent!important;white-space:nowrap!important}
+html[data-bt-brand="egyphone"] body.studio .studioHeaderTitle .egyI18nControls span{display:none!important}
+html[data-bt-brand="egyphone"] body.studio .studioHeaderTitle .egyI18nControls button{margin:0!important;padding:6px 8px!important;font-size:11px!important;line-height:1.2!important;min-height:30px!important;white-space:nowrap!important}
+html[data-bt-brand="egyphone"] body.studio #mainMenu .egyDocControls{flex-shrink:0!important;margin:10px!important}
+@media(max-width:760px){
+ html[data-bt-brand="egyphone"] body.studio .studioHeaderTitle{flex:1 1 auto!important;max-width:calc(100% - 116px)!important}
+ html[data-bt-brand="egyphone"] body.studio .studioHeaderTitle .egyI18nControls button{font-size:10px!important;padding:6px!important}
+}
