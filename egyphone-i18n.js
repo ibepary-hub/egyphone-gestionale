@@ -72,7 +72,16 @@ function renderControls(){
  doc.innerHTML='<label for="egyDocumentLanguage">Lingua documenti / لغة المستندات</label><select id="egyDocumentLanguage"><option value="it">🇮🇹 Italiano</option><option value="eg">🇪🇬 عربي مصري</option></select><small>Preferenza per le stampe future. I documenti fiscali ufficiali restano in italiano; nessuna traduzione dei PDF ancora attiva.</small>';
  doc.querySelector('select').value=localStorage.getItem(DOC_KEY)==='eg'?'eg':'it';
  doc.querySelector('select').addEventListener('change',e=>localStorage.setItem(DOC_KEY,e.target.value));
- (document.querySelector('#mainMenu .menuNav')||document.querySelector('#mainMenu')||document.body).append(doc);
+ // Put document preference in settings, not inside the sliding menu.
+ const settings=document.getElementById('settingsView')||document.querySelector('[data-category-view="Impostazioni"]')||document.getElementById('settingsPanel');
+ if(settings)settings.prepend(doc);
+ else {doc.hidden=true;document.body.append(doc);}
+ // If the settings view is rendered later, move the same control there.
+ const findSettings=()=>{
+  const target=document.getElementById('settingsView')||document.querySelector('[data-category-view="Impostazioni"]')||document.getElementById('settingsPanel');
+  if(target&&doc.parentElement!==target){target.prepend(doc);doc.hidden=false;}
+ };
+ document.addEventListener('click',e=>{if(e.target.closest('[data-category="Impostazioni"],#settingsMenuItem'))setTimeout(findSettings,100);},true);
 }
 function boot(){
  if(document.documentElement.dataset.btBrand!=='egyphone')return;
