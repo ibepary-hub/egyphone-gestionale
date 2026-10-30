@@ -1,0 +1,48 @@
+/* EGYPHONE mobile hotfix — isolated from BeparyTech */
+@media(max-width: 760px){
+ html[data-bt-brand="egyphone"],html[data-bt-brand="egyphone"] body{max-width:100%;overflow-x:clip!important}
+ html[data-bt-brand="egyphone"] body.studio{width:100%;min-width:0!important;padding-bottom:calc(86px + env(safe-area-inset-bottom))!important}
+ html[data-bt-brand="egyphone"] body.studio :is(.app,.dashboardHero,.dashboardHeroCopy,.studioWelcome,.dashboardMainGrid,.dashboardCenterCol,.adminStatsArea,.globalSearchBar,.globalSearchBox,.studioHeaderTitle,.dashboardPrimaryActions,.adminHero,.adminUniformCard,.egyDocArchive,.egyInvoiceColumn){min-width:0!important;max-width:100%!important;box-sizing:border-box!important}
+ html[data-bt-brand="egyphone"] body.studio .app{width:100%!important;margin:0!important;padding-inline:12px!important}
+ html[data-bt-brand="egyphone"] body.studio header{width:100%!important;min-width:0!important;padding:12px!important;gap:10px!important;box-sizing:border-box!important}
+ html[data-bt-brand="egyphone"] body.studio .studioHeaderTitle strong{font-size:clamp(17px,5vw,23px)!important;overflow-wrap:anywhere}
+ html[data-bt-brand="egyphone"] body.studio .headerActions{flex-shrink:0!important;gap:6px!important}
+ html[data-bt-brand="egyphone"] body.studio .globalSearchBar{width:100%!important;margin:8px 0!important;padding:0!important}
+ html[data-bt-brand="egyphone"] body.studio .globalSearchBox{display:flex!important;gap:7px!important;width:100%!important;min-width:0!important;padding:8px!important}
+ html[data-bt-brand="egyphone"] body.studio .globalSearchBox input{flex:1 1 0!important;width:0!important;min-width:0!important;font-size:16px!important;text-overflow:ellipsis}
+ html[data-bt-brand="egyphone"] body.studio #scanBarcodeBtn{flex:0 0 auto!important;max-width:86px!important;padding:8px!important;font-size:12px!important}
+ html[data-bt-brand="egyphone"] body.studio .dashboardHero{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:12px!important;padding:20px 16px!important;margin:8px 0 14px!important;min-height:0!important}
+ html[data-bt-brand="egyphone"] body.studio .dashboardHeroCopy h2{font-size:clamp(23px,7vw,32px)!important;line-height:1.16!important;overflow-wrap:anywhere!important;word-break:normal!important;letter-spacing:-.02em!important;margin:8px 0!important}
+ html[data-bt-brand="egyphone"] body.studio .dashboardHeroCopy p{font-size:14px!important;line-height:1.5!important}
+ html[data-bt-brand="egyphone"] body.studio .dashboardHero .heroQuote{display:none!important}
+ html[data-bt-brand="egyphone"] body.studio #refreshDashboardBtn{position:static!important;align-self:flex-start!important;transform:none!important;min-height:40px!important}
+ html[data-bt-brand="egyphone"] body.studio .studioWelcome{display:flex!important;gap:8px!important;min-height:0!important;padding:18px 16px!important;margin:0 0 16px!important}
+ html[data-bt-brand="egyphone"] body.studio .studioWelcome h3{font-size:clamp(20px,6vw,26px)!important;line-height:1.2!important}
+ html[data-bt-brand="egyphone"] body.studio .studioWelcome p{font-size:13px!important;line-height:1.5!important}
+ html[data-bt-brand="egyphone"] body.studio .studioWelcomeMark{display:none!important}
+ html[data-bt-brand="egyphone"] body.studio :is(.dashboardMainGrid,.dashboardCenterCol,.dashboardAnalyticsGrid,.egyInvoiceColumns){grid-template-columns:minmax(0,1fr)!important}
+ html[data-bt-brand="egyphone"] body.studio :is(.quickAccessGrid,.dashboardPrimaryActions){grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+ html[data-bt-brand="egyphone"] body.studio .dashboardPrimaryActions button{min-width:0!important;padding:12px!important;gap:8px!important;overflow-wrap:anywhere}
+ html[data-bt-brand="egyphone"] body.studio .dashboardPrimaryActions button strong{font-size:13px!important}
+ html[data-bt-brand="egyphone"] body.studio .dashboardPrimaryActions button small{font-size:11px!important}
+ html[data-bt-brand="egyphone"] body.studio .adminUniformCard{padding:14px!important}
+ html[data-bt-brand="egyphone"] body.studio .adminUniformCard :is(button,strong,small,h2,h3,p){overflow-wrap:anywhere}
+ html[data-bt-brand="egyphone"] body.studio .mobileBottomNav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;position:fixed!important;left:8px!important;right:8px!important;bottom:calc(6px + env(safe-area-inset-bottom))!important;width:auto!important;max-width:calc(100vw - 16px)!important;padding:5px!important;gap:3px!important;transform:none!important;z-index:120!important;background:#10283c!important;border:1px solid #35536a!important;border-radius:17px!important}
+ html[data-bt-brand="egyphone"] body.studio .mobileBottomNav[hidden]{display:none!important}
+ html[data-bt-brand="egyphone"] body.studio .mobileBottomNav button{min-height:54px!important;min-width:0!important;padding:6px 2px!important;border-radius:12px!important;transform:none!important;box-shadow:none!important}
+ html[data-bt-brand="egyphone"] body.studio .mobileBottomNav button span{font-size:10px!important;line-height:1.2!important}
+ html[data-bt-brand="egyphone"] body.studio .mobileBottomNav button[data-smart-action="scanner"]{background:linear-gradient(145deg,#f1cb6c,#dca52f)!important;color:#1c2530!important;border:1px solid #efd285!important}
+ html[data-bt-brand="egyphone"] body.studio .mobileBottomNav button[data-smart-action="scanner"] b{font-size:25px!important;color:#1c2530!important}
+ html[data-bt-brand="egyphone"] body.studio .mobileBottomNav button[data-smart-action="scanner"] span{color:#1c2530!important;font-weight:900!important}
+ html[data-bt-brand="egyphone"] body.studio .mobileBottomNav button[data-smart-action="scanner"].studio-active{background:#e6b346!important}
+ html[data-bt-brand="egyphone"] body.studio .smartBackBtn{bottom:calc(90px + env(safe-area-inset-bottom))!important}
+ html[data-bt-brand="egyphone"] body.studio :is(.adminGrid,.quickRepairGrid,.formGrid){max-width:100%!important}
+}
+@media(max-width:390px){html[data-bt-brand="egyphone"] body.studio .dashboardPrimaryActions{grid-template-columns:minmax(0,1fr)!important}}
+.egyQuickOverlay[hidden]{display:none!important}
+.egyQuickOverlay{position:fixed;inset:0;z-index:15000;display:flex;align-items:flex-end;justify-content:center;background:rgba(2,12,22,.72);padding:16px 16px calc(18px + env(safe-area-inset-bottom));box-sizing:border-box}
+.egyQuickSheet{width:min(100%,440px);background:#10283c;color:#f7f0df;border:1px solid #4b6578;border-radius:20px;padding:18px;box-shadow:0 20px 55px #0008;box-sizing:border-box}
+.egyQuickSheet h2{font-size:19px;margin:0 0 6px}.egyQuickSheet p{font-size:13px;color:#c4d4e2;margin:0 0 14px}
+.egyQuickSheet button{display:block;width:100%;text-align:left;padding:15px;margin-top:8px;border-radius:12px;background:#1c3b53;color:#fff;border:1px solid #507086;font-size:15px;font-weight:700}
+.egyQuickSheet button:first-of-type{background:#e7b747;color:#1a2431;border-color:#f1ce79}
+.egyQuickSheet button:last-of-type{text-align:center;background:transparent;color:#d5e2eb;font-weight:500}
