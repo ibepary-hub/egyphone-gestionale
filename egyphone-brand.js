@@ -71,6 +71,18 @@
   if(heading){
     new MutationObserver(()=>{if(document.documentElement.dataset.btBrand==="egyphone"&&heading.textContent!=="EGYPHONE")heading.textContent="EGYPHONE";}).observe(heading,{childList:true,characterData:true,subtree:true});
   }
+  // The dashboard replaces the greeting asynchronously with the user's full legal name.
+  // Keep the public-facing greeting fixed to the shop brand without editing account details.
+  const greeting=document.getElementById("dashboardGreetingName");
+  if(greeting){
+    const syncGreeting=()=>{
+      if(document.documentElement.dataset.btBrand==="egyphone" && greeting.textContent!=="EGYPHONE"){
+        greeting.textContent="EGYPHONE";
+      }
+    };
+    new MutationObserver(syncGreeting).observe(greeting,{childList:true,characterData:true,subtree:true});
+    syncGreeting();
+  }
   const header=document.getElementById("dashUserName");
   if(header){
     new MutationObserver(()=>{if(document.documentElement.dataset.btBrand==="egyphone" && header.textContent!=="EGYPHONE")header.textContent="EGYPHONE";}).observe(header,{childList:true,characterData:true,subtree:true});
