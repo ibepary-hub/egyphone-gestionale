@@ -64,3 +64,8 @@ html[data-bt-brand="egyphone"] body.studio.egy-ui-arabic #mainMenu .menuFooter{f
 }
 html[data-bt-brand="egyphone"] body.studio #settingsView .egyDocControls{display:block!important;max-width:550px!important;margin:16px 0!important}
 html[data-bt-brand="egyphone"] body.studio .studioHeaderTitle .egyI18nControls{display:flex!important;flex-wrap:nowrap!important}
+
+/* Keep feature-gated menu entries truly hidden despite legacy display:grid !important. */
+html[data-bt-brand="egyphone"] body.studio #mainMenu [hidden]{display:none!important}
+html[data-bt-brand="egyphone"] body.studio #bestekCatalogMenuItem{display:none!important}
+html[data-bt-brand="egyphone"] body.studio #mainMenu .menuNav{scrollbar-width:thin}
