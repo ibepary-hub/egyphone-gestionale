@@ -25,7 +25,7 @@
   if(!isEgy())return;
   const b=document.querySelector('#mobileBottomNav [data-smart-action="scanner"]');
   if(!b)return;b.setAttribute('aria-label','Nuova pratica: accettazione rapida o completa');
-  const icon=b.querySelector('b'),txt=b.querySelector('span');if(icon)icon.textContent='＋';if(txt)txt.textContent='Rapida';
+  const icon=b.querySelector('b'),txt=b.querySelector('span');if(icon&&icon.textContent!=='＋')icon.textContent='＋';if(txt&&txt.textContent!=='Rapida')txt.textContent='Rapida';
  }
  document.addEventListener('DOMContentLoaded',()=>{label();const nav=document.getElementById('mobileBottomNav');if(nav)new MutationObserver(label).observe(nav,{childList:true,subtree:true,characterData:true});});
 })();
