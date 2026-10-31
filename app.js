@@ -2397,6 +2397,34 @@ function bindAdminRepairs(){
  updateAdminRepairVatPreview();
 }
 
+// EGYPHONE: save a new sales store in the existing workspace-scoped store address book.
+document.getElementById("deviceSaleSaveStore")?.addEventListener("click",async()=>{
+ const input=document.getElementById("deviceSaleNewStore");
+ const select=document.getElementById("deviceSaleStore");
+ const button=document.getElementById("deviceSaleSaveStore");
+ const msg=document.getElementById("deviceSaleStoreMsg");
+ const name=String(input?.value||"").trim().replace(/\s+/g," ");
+ if(!isAdmin()||!currentUser){msg.textContent="Effettua l'accesso come amministratore.";return;}
+ if(name.length<2){msg.textContent="Scrivi un nome negozio di almeno 2 caratteri.";return;}
+ const existing=storeList.find(s=>String(s.name||"").trim().toLocaleLowerCase("it")===name.toLocaleLowerCase("it"));
+ if(existing){
+   if(existing.active===false){msg.textContent="Questo negozio è disattivato. Riattivalo dalla rubrica negozi.";return;}
+   if(existing.admin_only&&!isAdmin()){msg.textContent="Non sei autorizzato a usare questo negozio.";return;}
+   if(![...select.options].some(o=>o.value===existing.name)){await loadStores();}
+   select.value=existing.name;input.value="";msg.textContent="Negozio già presente: selezionato.";return;
+ }
+ button.disabled=true;msg.textContent="Salvataggio negozio…";
+ try{
+   const ctx=await btGetWorkspaceOwnerId();
+   const {error}=await sb.from("beparytech_stores").insert({workspace_owner_id:ctx.owner,name,admin_only:false,active:true,created_by:currentUser.id});
+   if(error)throw error;
+   await loadStores();
+   if(![...select.options].some(o=>o.value===name))select.add(new Option(name,name));
+   select.value=name;input.value="";
+   msg.textContent="Negozio salvato nella rubrica e selezionato.";
+ }catch(err){msg.textContent="Non è stato possibile salvare il negozio: "+(err?.message||"errore");}
+ finally{button.disabled=false;}
+});
 const storeAdminForm=document.getElementById("storeAdminForm");
 if(storeAdminForm)storeAdminForm.addEventListener("submit",async e=>{e.preventDefault();if(!isAdmin())return;const name=document.getElementById("storeAdminName").value.trim(),admin_only=document.getElementById("storeAdminPrivate").checked,msg=document.getElementById("storeAdminMsg");if(!name)return;const {error}=await sb.from("beparytech_stores").insert({workspace_owner_id:workspaceOwnerId,name,admin_only,active:true,created_by:currentUser.id});if(error){msg.className="createUserMsg error";msg.textContent=error.message;return;}e.target.reset();msg.className="createUserMsg ok";msg.textContent="Negozio aggiunto.";await loadStores();});
 
