@@ -43,3 +43,16 @@ html[data-bt-brand="egyphone"] body.studio #egyQuranButton{
  max-height:calc(100dvh - 185px)!important;
  }
 }
+
+/* Quran launcher integrated as the last item of Altro sidebar, never floating. */
+html[data-bt-brand="egyphone"] body.studio #egyQuranMenuSlot{display:block!important;margin:8px 0!important;flex:0 0 auto!important}
+html[data-bt-brand="egyphone"] body.studio #egyQuranMenuSlot #egyQuranButton{
+ position:static!important;inset:auto!important;bottom:auto!important;right:auto!important;
+ display:flex!important;align-items:center!important;justify-content:flex-start!important;
+ width:100%!important;height:auto!important;min-height:48px!important;padding:12px 14px!important;
+ font-size:15px!important;line-height:1.3!important;text-align:left!important;
+ border:1px solid #3f6176!important;border-radius:11px!important;
+ background:#153249!important;color:#e9c36a!important;box-shadow:none!important;
+}
+html[data-bt-brand="egyphone"] body.studio #egyQuranMenuSlot #egyQuranButton:hover{background:#23445b!important}
+html[data-bt-brand="egyphone"] body.menu-open #egyQuranMenuSlot #egyQuranButton{display:flex!important}
