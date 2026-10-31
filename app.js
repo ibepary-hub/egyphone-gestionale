@@ -1956,6 +1956,15 @@ function updateDeviceSaleVatPreview(){
 }
 let deviceSalesRows=[];
 let editingDeviceSaleId=null;
+function btSaleCustomerFromNote(note){
+ const s=String(note||"");const m=s.match(/^Cliente vendita: ([^\n]*)(?:\n|$)/);
+ return {name:m?m[1]:"",note:m?s.slice(m[0].length):s};
+}
+function btSaleCustomerToNote(name,note){
+ const n=String(name||"").trim().replace(/[\r\n]+/g," ").slice(0,120);
+ const clean=String(note||"").trim();
+ return (n?"Cliente vendita: "+n+(clean?"\n":""):"")+clean||null;
+}
 function deviceSaleById(id){return deviceSalesRows.find(r=>Number(r.id)===Number(id))||null;}
 function deviceSaleTotals(r){
   const net=Number(r.net_amount ?? r.sale_price ?? 0), rate=Number(r.vat_rate||0);
@@ -2007,7 +2016,8 @@ function duplicateDeviceSale(id){
   document.getElementById("deviceSaleVatRate").value=Number(r.vat_rate||0);
   document.getElementById("deviceSalePurchaseUrl").value=r.purchase_url||"";
   document.getElementById("deviceSaleSupplier").value=r.supplier_name||"";
-  document.getElementById("deviceSaleNote").value=r.note||"";
+  document.getElementById("deviceSaleCustomerName").value=btSaleCustomerFromNote(r.note).name;
+  document.getElementById("deviceSaleNote").value=btSaleCustomerFromNote(r.note).note;
   updateDeviceSaleVatPreview();
   document.getElementById("deviceSaleForm")?.scrollIntoView({behavior:"smooth",block:"start"});
   document.getElementById("deviceSaleName")?.focus();
@@ -2024,7 +2034,8 @@ function openEditDeviceSale(id){
   document.getElementById("editDeviceSaleVatRate").value=Number(r.vat_rate||0);
   document.getElementById("editDeviceSalePurchaseUrl").value=r.purchase_url||"";
   document.getElementById("editDeviceSaleSupplier").value=r.supplier_name||"";
-  document.getElementById("editDeviceSaleNote").value=r.note||"";
+  document.getElementById("editDeviceSaleCustomerName").value=btSaleCustomerFromNote(r.note).name;
+  document.getElementById("editDeviceSaleNote").value=btSaleCustomerFromNote(r.note).note;
   document.getElementById("deviceSaleEditMsg").textContent="";
   document.getElementById("deviceSaleEditModal").hidden=false;
 }
@@ -2036,7 +2047,7 @@ document.getElementById("deviceSaleEditForm")?.addEventListener("submit",async e
   e.preventDefault();if(!isAdmin()||!editingDeviceSaleId)return;
   const msg=document.getElementById("deviceSaleEditMsg"),url=document.getElementById("editDeviceSalePurchaseUrl").value.trim();
   if(url&&safeExternalUrl(url)==="#"){msg.className="createUserMsg error";msg.textContent="Link acquisto non valido.";return;}
-  const row={sold_at:document.getElementById("editDeviceSaleDate").value,store:document.getElementById("editDeviceSaleStore").value,device_name:document.getElementById("editDeviceSaleName").value.trim(),sale_price:Number(document.getElementById("editDeviceSalePrice").value),vat_rate:Number(document.getElementById("editDeviceSaleVatRate").value)||0,purchase_url:url||null,supplier_name:document.getElementById("editDeviceSaleSupplier").value.trim()||supplierFromUrl(url)||null,note:document.getElementById("editDeviceSaleNote").value.trim()||null};
+  const row={sold_at:document.getElementById("editDeviceSaleDate").value,store:document.getElementById("editDeviceSaleStore").value,device_name:document.getElementById("editDeviceSaleName").value.trim(),sale_price:Number(document.getElementById("editDeviceSalePrice").value),vat_rate:Number(document.getElementById("editDeviceSaleVatRate").value)||0,purchase_url:url||null,supplier_name:document.getElementById("editDeviceSaleSupplier").value.trim()||supplierFromUrl(url)||null,note:btSaleCustomerToNote(document.getElementById("editDeviceSaleCustomerName").value,document.getElementById("editDeviceSaleNote").value)};
   const btn=e.submitter; if(btn){btn.disabled=true;btn.textContent="Salvo…";}
   const {error}=await sb.from("beparytech_admin_device_sales").update(row).eq("id",editingDeviceSaleId);
   if(btn){btn.disabled=false;btn.textContent="Salva modifiche";}
@@ -2067,7 +2078,7 @@ document.getElementById("deviceSalePurchaseUrl")?.addEventListener("input",e=>{c
 document.getElementById("refreshDeviceSalesBtn")?.addEventListener("click",loadDeviceSales);
 document.getElementById("deviceSaleForm")?.addEventListener("submit",async e=>{e.preventDefault(); if(!isAdmin())return; const msg=document.getElementById("deviceSaleMsg");
   const url=document.getElementById("deviceSalePurchaseUrl").value.trim(); if(url && safeExternalUrl(url)==="#"){msg.className="createUserMsg error";msg.textContent="Link acquisto non valido.";return;}
-  const row={workspace_owner_id:workspaceOwnerId,created_by:currentUser.id,sold_at:document.getElementById("deviceSaleDate").value,store:document.getElementById("deviceSaleStore").value,device_name:document.getElementById("deviceSaleName").value.trim(),sale_price:Number(document.getElementById("deviceSalePrice").value),vat_rate:Number(document.getElementById("deviceSaleVatRate").value)||0,purchase_url:url||null,supplier_name:document.getElementById("deviceSaleSupplier").value.trim()||supplierFromUrl(url)||null,note:document.getElementById("deviceSaleNote").value.trim()||null};
+  const row={workspace_owner_id:workspaceOwnerId,created_by:currentUser.id,sold_at:document.getElementById("deviceSaleDate").value,store:document.getElementById("deviceSaleStore").value,device_name:document.getElementById("deviceSaleName").value.trim(),sale_price:Number(document.getElementById("deviceSalePrice").value),vat_rate:Number(document.getElementById("deviceSaleVatRate").value)||0,purchase_url:url||null,supplier_name:document.getElementById("deviceSaleSupplier").value.trim()||supplierFromUrl(url)||null,note:btSaleCustomerToNote(document.getElementById("deviceSaleCustomerName").value,document.getElementById("deviceSaleNote").value)};
   const {error}=await sb.from("beparytech_admin_device_sales").insert(row); msg.className=`createUserMsg ${error?"error":"ok"}`; msg.textContent=error?error.message:"Vendita salvata."; if(!error){e.target.reset();document.getElementById("deviceSaleDate").value=new Date().toISOString().slice(0,10);document.getElementById("deviceSaleVatRate").value="22";updateDeviceSaleVatPreview();loadDeviceSales();}
 });
 document.getElementById("adminLoginPasswordForm")?.addEventListener("submit",async e=>{e.preventDefault(); if(!isAdmin())return; const msg=document.getElementById("adminLoginPasswordMsg"),btn=document.getElementById("adminLoginPasswordSave"), userId=document.getElementById("adminLoginPasswordUser").value,p1=document.getElementById("adminLoginPasswordValue").value,p2=document.getElementById("adminLoginPasswordValue2").value; msg.textContent=""; if(!userId){msg.textContent="Seleziona un utente.";return;} if(!isStrongLoginPassword(p1)){msg.textContent="Password: minimo 12 caratteri con maiuscola, minuscola, numero e simbolo.";return;} if(p1!==p2){msg.textContent="Le password non coincidono.";return;} btn.disabled=true; const {data,error}=await sb.functions.invoke("beparytech-users",{method:"POST",body:{action:"set_login_password",user_id:userId,password:p1}}); btn.disabled=false; if(error||data?.error){msg.className="createUserMsg error";msg.textContent=data?.error||error?.message||"Impossibile aggiornare la password.";return;} msg.className="createUserMsg ok";msg.textContent="Password login aggiornata correttamente.";e.target.reset();});
