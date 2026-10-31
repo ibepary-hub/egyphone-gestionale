@@ -378,3 +378,48 @@ html[data-bt-brand="egyphone"] body.studio #adminOperationalPanels .dashboardPan
  html[data-bt-brand="egyphone"] body.studio #adminOperationalPanels .panelHead{padding:15px!important;min-height:68px!important}
  html[data-bt-brand="egyphone"] body.studio #adminOperationalPanels .dashboardPanelBody{padding:12px!important}
 }
+
+/* EGYPHONE 2026-10-31: consistent sale and repair totals on narrow iPhones. */
+html[data-bt-brand="egyphone"] body.studio #adminRepairForm .repairV1Finance,
+html[data-bt-brand="egyphone"] body.studio #deviceSaleForm .vatPreview{
+ background:transparent!important;border:0!important;box-shadow:none!important;
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:10px!important;padding:0!important;margin:18px 0!important;
+}
+html[data-bt-brand="egyphone"] body.studio #adminRepairForm .repairV1Finance>div,
+html[data-bt-brand="egyphone"] body.studio #deviceSaleForm .vatPreview>div{
+ min-width:0!important;min-height:92px!important;box-sizing:border-box!important;
+ background:#19374d!important;border:1px solid #46637b!important;border-radius:14px!important;
+ padding:15px!important;box-shadow:none!important;color:#f5eee2!important;
+ display:flex!important;flex-direction:column!important;justify-content:center!important;gap:6px!important;
+}
+html[data-bt-brand="egyphone"] body.studio #adminRepairForm .repairV1Finance>div.total,
+html[data-bt-brand="egyphone"] body.studio #deviceSaleForm .vatPreview>div.total{
+ background:#23445a!important;border-color:#d6a844!important;
+}
+html[data-bt-brand="egyphone"] body.studio #adminRepairForm .repairV1Finance>div span,
+html[data-bt-brand="egyphone"] body.studio #deviceSaleForm .vatPreview>div span{
+ color:#c0d0de!important;opacity:1!important;font-size:13px!important;
+}
+html[data-bt-brand="egyphone"] body.studio #adminRepairForm .repairV1Finance>div strong,
+html[data-bt-brand="egyphone"] body.studio #deviceSaleForm .vatPreview>div strong{
+ color:#f9efdb!important;opacity:1!important;font-size:21px!important;overflow-wrap:anywhere!important;
+}
+html[data-bt-brand="egyphone"] body.studio #deviceSaleForm .deviceSaleGrid,
+html[data-bt-brand="egyphone"] body.studio #adminRepairForm .deviceSaleGrid{min-width:0!important}
+html[data-bt-brand="egyphone"] body.studio #deviceSaleForm .deviceSaleGrid label,
+html[data-bt-brand="egyphone"] body.studio #adminRepairForm .deviceSaleGrid label{min-width:0!important;max-width:100%!important;box-sizing:border-box!important}
+html[data-bt-brand="egyphone"] body.studio #deviceSaleForm .deviceSaleGrid :is(input,select,textarea),
+html[data-bt-brand="egyphone"] body.studio #adminRepairForm .deviceSaleGrid :is(input,select,textarea){
+ min-width:0!important;max-width:100%!important;box-sizing:border-box!important;
+}
+html[data-bt-brand="egyphone"] body.studio .repairWhatsappAction,
+html[data-bt-brand="egyphone"] body.studio .notifyRepairWhatsapp{
+ background:#1d6b4e!important;border:1px solid #32936b!important;
+ color:#ffffff!important;font-weight:700!important;
+}
+html[data-bt-brand="egyphone"] body.studio .repairWhatsappAction[hidden]{display:none!important}
+@media(max-width:560px){
+ html[data-bt-brand="egyphone"] body.studio #adminRepairForm .repairV1Finance,
+ html[data-bt-brand="egyphone"] body.studio #deviceSaleForm .vatPreview{grid-template-columns:minmax(0,1fr)!important}
+}
