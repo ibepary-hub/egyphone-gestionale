@@ -18,3 +18,8 @@ html[data-bt-brand="egyphone"] .egyQOptions{display:flex;flex-wrap:wrap;gap:12px
 html[data-bt-brand="egyphone"] .egyQOptions label{display:flex;gap:6px;align-items:center}
 html[data-bt-brand="egyphone"] .egyQBody small{color:#b6c9d8;font-size:11px}
 @media(min-width:1060px){html[data-bt-brand="egyphone"] #egyQuranButton{bottom:24px}html[data-bt-brand="egyphone"] #egyQuranPanel{bottom:78px}}
+
+/* Only show controls after login and keep the sidebar clear. */
+html[data-bt-brand="egyphone"] body:not(.logged-in) #egyQuranButton,
+html[data-bt-brand="egyphone"] body:not(.logged-in) #egyQuranPanel,
+html[data-bt-brand="egyphone"] body.menu-open #egyQuranButton{display:none!important}
