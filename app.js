@@ -2267,6 +2267,7 @@ async function generateAdminRepairReceipt(id){
 
 function resetAdminRepairEditor(){
   adminRepairEditingId=null;
+  const whatsappBtn=document.getElementById("adminRepairWhatsappBtn");if(whatsappBtn)whatsappBtn.hidden=true;
   const form=document.getElementById("adminRepairForm");
   if(form) form.dataset.editing="0";
   const submit=document.getElementById("adminRepairSubmitBtn");
@@ -2286,6 +2287,7 @@ function resetAdminRepairEditor(){
 function startAdminRepairEdit(id){
   const r=adminRepairRows.find(x=>Number(x.id)===Number(id)); if(!r)return;
   adminRepairEditingId=Number(r.id);
+  const whatsappBtn=document.getElementById("adminRepairWhatsappBtn");if(whatsappBtn)whatsappBtn.hidden=false;
   const form=document.getElementById("adminRepairForm"); if(form)form.dataset.editing="1";
   document.getElementById("adminRepairDate").value=r.repaired_at||"";
   document.getElementById("adminRepairStore").value=r.store||"";
@@ -2367,6 +2369,11 @@ function bindAdminRepairs(){
  document.getElementById("adminRepairPartCost")?.addEventListener("input",updateAdminRepairVatPreview);
  document.getElementById("adminRepairDeposit")?.addEventListener("input",updateAdminRepairVatPreview);
  document.getElementById("refreshAdminRepairsBtn")?.addEventListener("click",loadAdminRepairs);
+ document.getElementById("adminRepairWhatsappBtn")?.addEventListener("click",()=>{
+   if(!adminRepairEditingId)return;
+   const b=[...document.querySelectorAll("#adminRepairsList .notifyRepairWhatsapp")].find(x=>Number(x.dataset.id)===Number(adminRepairEditingId));
+   if(b)b.click();else alert("Salva prima la pratica e aggiorna lo storico per inviare WhatsApp.");
+ });
  const clientSel=document.getElementById("adminRepairClient"),customClient=document.getElementById("adminRepairCustomClient"),customClientWrap=document.getElementById("adminRepairCustomClientWrap");const syncAdminRepairClient=()=>{const other=clientSel?.value==="ALTRO";if(customClientWrap)customClientWrap.hidden=!other;if(customClient){customClient.disabled=!other;customClient.required=!!other;if(!other)customClient.value="";}if(clientSel?.value==="VR Trasporti"){document.getElementById("adminRepairStore").value="VR Trasporti";}};clientSel?.addEventListener("change",syncAdminRepairClient);syncAdminRepairClient();
  document.getElementById("adminRepairCancelEdit")?.addEventListener("click",()=>{resetAdminRepairEditor();const msg=document.getElementById("adminRepairMsg");if(msg)msg.textContent="Modifica annullata.";});
  form.addEventListener("submit",async ev=>{
