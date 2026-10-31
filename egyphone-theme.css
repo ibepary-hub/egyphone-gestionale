@@ -345,3 +345,36 @@ html[data-bt-brand="egyphone"] body.studio .egyDocHead{color:#f5f0e6!important}
 @media(max-width:350px){
  html[data-bt-brand="egyphone"] body.studio #deviceSalesView .adminWorkTabs{grid-template-columns:minmax(0,1fr)!important}
 }
+
+/* EGYPHONE dashboard: remove old white low-stock/activity panels without affecting data. */
+html[data-bt-brand="egyphone"] body.studio #adminOperationalPanels .dashboardPanel{
+ background:#122b40!important;border:1px solid #426079!important;border-radius:18px!important;
+ padding:0!important;overflow:hidden!important;box-shadow:none!important;color:#f6f0e5!important;
+}
+html[data-bt-brand="egyphone"] body.studio #adminOperationalPanels .panelHead{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ width:100%!important;min-height:76px!important;padding:18px!important;gap:12px!important;
+ background:#1a364d!important;border:0!important;border-bottom:1px solid #405c74!important;
+ color:#f6f0e5!important;text-align:left!important;
+}
+html[data-bt-brand="egyphone"] body.studio #adminOperationalPanels .panelHead strong{
+ display:block!important;color:#f8f1e4!important;font-size:17px!important;font-weight:800!important;opacity:1!important;
+}
+html[data-bt-brand="egyphone"] body.studio #adminOperationalPanels .panelHead small{
+ display:block!important;color:#bdd0df!important;font-size:12px!important;margin-top:4px!important;opacity:1!important;
+}
+html[data-bt-brand="egyphone"] body.studio #adminOperationalPanels .panelChevron{color:#e6b346!important}
+html[data-bt-brand="egyphone"] body.studio #adminOperationalPanels .dashboardPanelBody{
+ background:#122b40!important;color:#e8f0f5!important;padding:16px!important;
+}
+html[data-bt-brand="egyphone"] body.studio #adminOperationalPanels :is(.emptyState,.empty,.noData){
+ background:#1a364d!important;color:#c6d6e2!important;border:1px solid #395772!important;
+ border-radius:13px!important;box-shadow:none!important;
+}
+html[data-bt-brand="egyphone"] body.studio #adminOperationalPanels .dashboardPanelBody :is(strong,b,span,p,small){
+ color:inherit!important;
+}
+@media(max-width:760px){
+ html[data-bt-brand="egyphone"] body.studio #adminOperationalPanels .panelHead{padding:15px!important;min-height:68px!important}
+ html[data-bt-brand="egyphone"] body.studio #adminOperationalPanels .dashboardPanelBody{padding:12px!important}
+}
