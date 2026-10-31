@@ -33,7 +33,9 @@ function build(){
  const select=panel.querySelector('#egyQSelect');
  names.forEach((name,i)=>{const opt=document.createElement('option');opt.value=String(i+1);opt.textContent=String(i+1)+'. '+name;select.append(opt);});
  audio=document.createElement('audio');audio.preload='none';audio.volume=.8;audio.id='egyQAudio';document.body.append(audio);
- document.body.append(button,panel);
+ const more=document.querySelector('#mobileBottomNav [data-smart-action="menu"]');
+ if(more){const spot=document.createElement('div');spot.id='egyQuranMenuSlot';spot.append(button);more.after(spot);}else document.body.append(button);
+ document.body.append(panel);
  select.addEventListener('change',()=>setSurah(Number(select.value)));
  panel.querySelector('#egyQClose').addEventListener('click',()=>{panel.hidden=true;button.setAttribute('aria-expanded','false');});
  panel.querySelector('#egyQPlay').addEventListener('click',toggle);
