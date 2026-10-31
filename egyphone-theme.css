@@ -423,3 +423,12 @@ html[data-bt-brand="egyphone"] body.studio .repairWhatsappAction[hidden]{display
  html[data-bt-brand="egyphone"] body.studio #adminRepairForm .repairV1Finance,
  html[data-bt-brand="egyphone"] body.studio #deviceSaleForm .vatPreview{grid-template-columns:minmax(0,1fr)!important}
 }
+
+/* New store entry in EGYPHONE sales - mobile first */
+html[data-bt-brand="egyphone"] body.studio .egySaleNewStore{min-width:0;display:flex;flex-direction:column;gap:8px;margin:4px 0 10px;color:#c8d7e3}
+html[data-bt-brand="egyphone"] body.studio .egySaleNewStore label span{color:#e6c06e!important;font-weight:700}
+html[data-bt-brand="egyphone"] body.studio .egySaleNewStoreRow{display:flex;gap:9px;align-items:stretch;min-width:0}
+html[data-bt-brand="egyphone"] body.studio .egySaleNewStoreRow input{flex:1;min-width:0;width:100%;background:#112a3e;color:#f8f1e4;border:1px solid #4a657c;border-radius:11px;padding:12px}
+html[data-bt-brand="egyphone"] body.studio #deviceSaleSaveStore{flex:0 0 auto;min-height:45px;white-space:nowrap;background:#24445b!important;color:#f2d38a!important;border:1px solid #a27c38!important;border-radius:11px;padding:10px 13px}
+html[data-bt-brand="egyphone"] body.studio #deviceSaleStoreMsg{display:block;color:#bbd7c9;min-height:1em;font-size:12px}
+@media(max-width:600px){html[data-bt-brand="egyphone"] body.studio .egySaleNewStoreRow{flex-direction:column}html[data-bt-brand="egyphone"] body.studio #deviceSaleSaveStore{width:100%}}
