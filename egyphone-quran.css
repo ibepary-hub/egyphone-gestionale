@@ -23,3 +23,23 @@ html[data-bt-brand="egyphone"] .egyQBody small{color:#b6c9d8;font-size:11px}
 html[data-bt-brand="egyphone"] body:not(.logged-in) #egyQuranButton,
 html[data-bt-brand="egyphone"] body:not(.logged-in) #egyQuranPanel,
 html[data-bt-brand="egyphone"] body.menu-open #egyQuranButton{display:none!important}
+
+/* Compact Quran launcher: no overlap with dashboard cards */
+html[data-bt-brand="egyphone"] body.studio #egyQuranButton{
+ width:48px!important;height:48px!important;min-width:48px!important;
+ display:grid!important;place-items:center!important;
+ padding:0!important;border-radius:15px!important;
+ font-size:26px!important;font-weight:700!important;line-height:1!important;
+ right:16px!important;bottom:calc(98px + env(safe-area-inset-bottom))!important;
+ background:#e6b346!important;color:#10283c!important;
+ border:1px solid #efd17d!important;box-shadow:0 6px 16px #0005!important;
+}
+@media(min-width:1060px){
+ html[data-bt-brand="egyphone"] body.studio #egyQuranButton{bottom:22px!important}
+}
+@media(max-width:760px){
+ html[data-bt-brand="egyphone"] body.studio #egyQuranPanel{
+ bottom:calc(155px + env(safe-area-inset-bottom))!important;
+ max-height:calc(100dvh - 185px)!important;
+ }
+}
