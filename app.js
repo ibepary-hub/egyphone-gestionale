@@ -2336,7 +2336,7 @@ async function loadAdminRepairs(){
       const name=String(r.client_name||"cliente").trim();
       const device=String(r.device||"dispositivo").trim();
       const code=String(r.practice_code||"").trim();
-      const message="Buongiorno "+name+",\\n\\nti informiamo che la riparazione del tuo "+device+" è stata completata. Il dispositivo è pronto per il ritiro presso EGYPHONE."+ (code?"\\nNumero pratica: "+code:"")+"\\n\\nGrazie per aver scelto EGYPHONE.";
+      const message="Buongiorno "+name+",\n\nti informiamo che la riparazione del tuo "+device+" è stata completata. Il dispositivo è pronto per il ritiro presso EGYPHONE."+ (code?"\nNumero pratica: "+code:"")+"\n\nGrazie per aver scelto EGYPHONE.";
       const url="https://wa.me/"+phone+"?text="+encodeURIComponent(message);
       window.open(url,"_blank","noopener,noreferrer");
     });
