@@ -1,0 +1,73 @@
+name: EgyPhone Desktop Windows
+on:
+  push:
+    branches: [main]
+    paths:
+      - desktop/source.zip
+      - .github/workflows/desktop-release.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: egyphone-desktop-release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Estrai sorgenti desktop
+        shell: pwsh
+        run: Expand-Archive -LiteralPath desktop/source.zip -DestinationPath desktop-build
+      - name: Versione e protezione dei rilasci pubblicati
+        id: version
+        shell: pwsh
+        working-directory: desktop-build/EgyPhone-Desktop
+        run: |
+          $version = (Get-Content package.json -Raw | ConvertFrom-Json).version
+          if ($version -notmatch '^\d+\.\d+\.\d+$') { throw 'Versione non valida' }
+          $tag = "desktop-v$version"
+          "tag=$tag" >> $env:GITHUB_OUTPUT
+          "version=$version" >> $env:GITHUB_OUTPUT
+          $existing = gh release view $tag --json isDraft 2>$null
+          if ($LASTEXITCODE -eq 0 -and ($existing | ConvertFrom-Json).isDraft -eq $false) { throw 'Versione già pubblicata: incrementa la versione del pacchetto.' }
+          exit 0
+      - name: Installa dipendenze
+        working-directory: desktop-build/EgyPhone-Desktop
+        run: npm ci --no-audit --no-fund
+      - name: Test applicazione e aggiornamenti
+        working-directory: desktop-build/EgyPhone-Desktop
+        run: npm test
+      - name: Crea installatore Windows
+        working-directory: desktop-build/EgyPhone-Desktop
+        run: node scripts/build-windows.cjs
+      - name: Crea metadati e checksum
+        working-directory: desktop-build/EgyPhone-Desktop
+        run: node scripts/release-metadata.cjs
+      - name: Pubblica il rilascio completo
+        shell: pwsh
+        working-directory: desktop-build/EgyPhone-Desktop
+        env:
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          $installer = "dist/EgyPhone-Desktop-Setup-$env:RELEASE_VERSION.exe"
+          $sources = "dist/EgyPhone_Desktop_${env:RELEASE_VERSION}_Sorgenti.zip"
+          Copy-Item ../../desktop/source.zip $sources
+          gh release view $env:RELEASE_TAG *> $null
+          if ($LASTEXITCODE -ne 0) {
+            gh release create $env:RELEASE_TAG --draft --target $env:GITHUB_SHA --title "EgyPhone Desktop $env:RELEASE_VERSION" --notes-file RELEASE-NOTES.md
+            if ($LASTEXITCODE -ne 0) { throw 'Creazione rilascio fallita' }
+          }
+          gh release upload $env:RELEASE_TAG $installer dist/egyphone-update.json dist/SHA256.txt $sources --clobber
+          if ($LASTEXITCODE -ne 0) { throw 'Upload dei file fallito: il rilascio resta in bozza' }
+          gh release edit $env:RELEASE_TAG --draft=false --latest
+          if ($LASTEXITCODE -ne 0) { throw 'Pubblicazione fallita' }
