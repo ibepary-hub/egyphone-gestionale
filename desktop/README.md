@@ -12,4 +12,4 @@ Per un aggiornamento futuro:
 
 L’app controlla solo rilasci desktop pubblicati e stabili di questo repository. Non installa versioni uguali o precedenti; controlla identità, versione, dimensione, indirizzo e checksum SHA256 del pacchetto. L’utente sceglie quando scaricare e quando installare. Nessun token GitHub è incluso nell’app.
 
-La versione 1.6.0 va installata una prima volta per introdurre il sistema. Le versioni 1.5.x non hanno il controllo aggiornamenti. La pubblicazione della sola versione corrente non mostra un popup di nuova versione a chi l’ha già installata.
+Una versione 1.6.x va installata una prima volta per introdurre il sistema. Le versioni 1.5.x non hanno il controllo aggiornamenti. La pubblicazione della sola versione corrente non mostra un popup di nuova versione a chi l’ha già installata.
